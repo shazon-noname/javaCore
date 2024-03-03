@@ -11,12 +11,12 @@ public class Main {
 
     private static void serialization() throws IOException {
         UserChild user = new UserChild();
-        user.lifeLevel = 55;
-        user.staticField = 45;
+        user.setLifeLevel(55);
+        user.staticField = 45; //        Static fields don't serializable
         user.sword = new Sword();
-        user.sword.level = 5;
-        user.childLevel = 65;
-        //        Static fields don't serializable
+        user.getSword().setLevel(55);
+        user.setChildLevel(65);
+
 
         FileOutputStream fileOutputStream = new FileOutputStream("tempfile.bin");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);

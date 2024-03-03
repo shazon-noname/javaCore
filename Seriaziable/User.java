@@ -3,14 +3,31 @@ package Seriaziable;
 import java.io.Serial;
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class User {
 // Static fields don`t serializable
-    @Serial
-    private static final long serialVersionUID = -45643562456L;
-    int lifeLevel;
+
+    protected Sword sword;
+
     static int staticField;
 
+    protected int lifeLevel;
+
+    public int getLifeLevel() {
+        return lifeLevel;
+    }
+
+    public void setLifeLevel(int lifeLevel) {
+        this.lifeLevel = lifeLevel;
+    }
+
+
+    public Sword getSword() {
+        return sword;
+    }
+
+    public void setSword(Sword sword) {
+        this.sword = sword;
+    }
     // transient when we don't want to serialize and returns a standard value
-    transient Sword sword;
 }
 
