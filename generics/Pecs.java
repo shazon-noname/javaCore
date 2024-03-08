@@ -42,12 +42,12 @@ class Product {
 class Phone extends Product {
     String model;
 
+    public Phone(String model) {
+        this.model = model;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(model);
-    }
-
-    public Phone(String model) {
-        this.model = model;
     }
 }

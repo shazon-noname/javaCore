@@ -7,6 +7,7 @@ class PracticeCloneObj {
         familyName.setFamilyLastName(familyLastName);
         System.out.println(familyName.getName() + " " + familyLastName.getLastName());
         FamilyName familyName1 = familyName.clone();
+        System.out.println(familyName1.toString());
         familyName1.setName("David");
         System.out.println(familyName1.getName() + " " + familyName1.getFamilyLastName().getLastName());
         familyName1.getFamilyLastName().setLastName("Avetisov");
@@ -43,6 +44,11 @@ class FamilyName implements Cloneable {
         FamilyName familyName = new FamilyName(name);
         familyName.familyLastName = familyLastName.clone();
         return familyName;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + familyLastName.getLastName();
     }
 }
 

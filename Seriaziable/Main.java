@@ -18,10 +18,10 @@ public class Main {
         user.setChildLevel(65);
 
 
-        FileOutputStream fileOutputStream = new FileOutputStream("tempfile.bin");
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-        objectOutputStream.writeObject(user);
-        objectOutputStream.close();
+            FileOutputStream fileOutputStream = new FileOutputStream("tempfile.bin");
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(user);
+            objectOutputStream.close();
     }
     private static void deserialization() throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream("tempfile.bin");
