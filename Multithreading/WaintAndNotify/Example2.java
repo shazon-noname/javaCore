@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Example2 {
-    static List<String> strings = Collections.synchronizedList(new ArrayList<>());
+    static final List<String> strings = Collections.synchronizedList(new ArrayList<>());
 
     public static void main(String[] args) {
         new Operator().start();
