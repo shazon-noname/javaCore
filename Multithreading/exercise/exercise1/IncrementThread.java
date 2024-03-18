@@ -2,16 +2,16 @@ package Multithreading.exercise.exercise1;
 
 public class IncrementThread extends Thread {
     private Counter counter;
-    private int incrementsPerThreads;
+    private int incrementPerThreads;
 
-    public IncrementThread(Counter counter, int incrementsPerThreads) {
+    public IncrementThread(Counter counter, int incrementPerThreads) {
         this.counter = counter;
-        this.incrementsPerThreads = incrementsPerThreads;
+        this.incrementPerThreads = incrementPerThreads;
     }
 
     @Override
     public void run() {
-        for (int i = 0; i < incrementsPerThreads ; i++) {
+        for (int i = 0; i < incrementPerThreads; i++) {
             counter.increment();
         }
     }

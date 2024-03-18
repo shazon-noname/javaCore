@@ -8,7 +8,7 @@ public class Main {
         int numThread = 12;
         int incrementsPerThreads = 10_000;
         IncrementThread[] threads = new IncrementThread[numThread];
-        for (int i = 0; i < numThread ; i++) {
+        for (int i = 0; i < numThread; i++) {
             threads[i] = new IncrementThread(counter, incrementsPerThreads);
             threads[i].start();
         }
@@ -17,7 +17,7 @@ public class Main {
             thread.join();
         }
 
-        System.out.println("total count = " + counter.getCount());
+        System.out.println(counter.getCount());
 
     }
 }
