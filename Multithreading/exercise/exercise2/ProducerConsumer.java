@@ -36,7 +36,7 @@ public class ProducerConsumer {
                     }
                     System.out.println("Producer produced: " + iterationCount);
                     buffer.add(iterationCount++);
-                    buffer.notify();
+                    buffer.notifyAll();
                     try {
                         Thread.sleep(500);
                     } catch (InterruptedException e) {
@@ -62,7 +62,7 @@ public class ProducerConsumer {
                     }
                     int value = buffer.poll();
                     System.out.println("Consumer consumed: " + value);
-                    buffer.notify();
+                    buffer.notifyAll();
                     if (iterationCount >= MAX_ITERATIONS && buffer.isEmpty()) {
                         break;
                     }
