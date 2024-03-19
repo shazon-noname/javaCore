@@ -23,6 +23,7 @@ public class Main {
 
         public Sportsman(CyclicBarrier barrier) {
             this.barrier = barrier;
+            start();
         }
 
         @Override
