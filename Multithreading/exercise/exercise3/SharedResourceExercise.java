@@ -15,10 +15,12 @@ public class SharedResourceExercise {
         Lock lock = new ReentrantLock();
         SharedResources sharedResources = new SharedResources();
         Thread[] threads = new Thread[NUM_THREADS];
+
         for (int i = 0; i < NUM_THREADS; i++) {
             threads[i] = new Thread(new Worker(lock, sharedResources));
             threads[i].start();
         }
+
         for (Thread thread : threads) {
             thread.join();
         }

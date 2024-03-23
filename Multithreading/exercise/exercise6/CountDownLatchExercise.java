@@ -13,8 +13,11 @@ public class CountDownLatchExercise {
             threads[i] = new Thread(new Worker());
             threads[i].start();
         }
-
-        startLatch.countDown();
+        /*
+        Starting threads: After all threads have started, startLatch.countDown() is called.
+        This method decreases the startLatch counter by one, thus signalling to all threads that they can continue execution.
+         */
+        startLatch.countDown(); //Allow threads to start simultaneously
         finishLatch.await();
 
         System.out.println("All threads have finished their work.");
@@ -25,6 +28,11 @@ public class CountDownLatchExercise {
         @Override
         public void run() {
             try {
+                /*
+                When the threads start, they all call startLatch.await().
+                This method makes the threads wait until the value of startLatch is zero.
+                Since startLatch is initially 1, all threads are stopped until it becomes zero.
+                 */
                 startLatch.await();
                 System.out.println("Thread " + Thread.currentThread().getName() + " has finished its work.");
             } catch (InterruptedException e) {
