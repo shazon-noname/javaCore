@@ -25,10 +25,10 @@ public class ForJoinFrameworkExample {
 
         @Override
         protected Long compute() {
-            if ((to - from) <= numOfOperations/numOfThreads) {
+            if ((to - from) <= numOfOperations / numOfThreads) {
                 long j = 0;
-                for (long i = from; i < to ; i++) {
-                    j += i;
+                for (long i = from; i <= to; i++) {
+                    j += 1;
                 }
                 return j;
             } else {
