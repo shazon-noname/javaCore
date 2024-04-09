@@ -1,41 +1,43 @@
-package Multithreading.exercise.exercise2;// ProducerConsumer.java
+package Multithreading.exercise.exercise2;
 
-import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.function.Consumer;
 
-public class ProducerConsumer {
+class ProducerConsumer {
     private static final int BUFFER_SIZE = 5;
-    private final static int MAX_ITERATIONS = 15;
-    private static volatile int iterationCount = 0;
-    private static final Queue<Integer> buffer = new LinkedList<>();
+    private static final int MAX_ITTERATION = 15;
+    private static volatile int itterationCount = 0;
+    private static Queue<Integer> buffer = new PriorityQueue<>();
 
     public static void main(String[] args) throws InterruptedException {
-        Thread producerThread = new Thread(new Producer());
-        Thread consumerThread = new Thread(new Consumer());
-        producerThread.start();
-        consumerThread.start();;
+        Thread producer = new Thread(new Producer());
+        Thread consumer = new Thread(new Consumer());
 
+        producer.start();
+        consumer.start();
+
+        producer.join();
+        consumer.join();
     }
 
     static class Producer implements Runnable {
 
         @Override
         public void run() {
-            while (iterationCount < MAX_ITERATIONS) {
+            while (itterationCount < MAX_ITTERATION) {
                 synchronized (buffer) {
-                    while (buffer.size() == BUFFER_SIZE) {
+                    if (BUFFER_SIZE == buffer.size()) {
                         try {
                             buffer.wait();
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
                     }
-                    if (iterationCount >= MAX_ITERATIONS && buffer.isEmpty()) {
+                    if (MAX_ITTERATION <= itterationCount && buffer.isEmpty()) {
                         break;
                     }
-                    System.out.println("Producer produced: " + iterationCount);
-                    buffer.add(iterationCount++);
+                    System.out.println(STR."Producer pro = \{itterationCount}");
+                    buffer.add(itterationCount++);
                     buffer.notifyAll();
                     try {
                         Thread.sleep(500);
@@ -53,17 +55,17 @@ public class ProducerConsumer {
         public void run() {
             while (true) {
                 synchronized (buffer) {
-                    while (buffer.isEmpty()) {
+                    if (buffer.isEmpty()) {
                         try {
                             buffer.wait();
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
                     }
-                    int value = buffer.poll();
-                    System.out.println("Consumer consumed: " + value);
+                    Integer poll = buffer.poll();
+                    System.out.println(STR."Consumer cons = \{poll}");
                     buffer.notifyAll();
-                    if (iterationCount >= MAX_ITERATIONS && buffer.isEmpty()) {
+                    if ( MAX_ITTERATION <= itterationCount && buffer.isEmpty()) {
                         break;
                     }
                     try {
@@ -76,3 +78,7 @@ public class ProducerConsumer {
         }
     }
 }
+
+
+
+

@@ -1,6 +1,5 @@
 package Multithreading.ThreadFactory;
 
-import java.sql.SQLOutput;
 import java.util.concurrent.ThreadFactory;
 
 public class ThreadFactoryExample {
