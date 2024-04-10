@@ -7,69 +7,48 @@ public final class Main {
     private static final int TO_NUMBER_FIRST_THREAD = 500;
     private static final int FROM_NUMBER_SECOND_THREAD = 501;
     private static final int TO_NUMBER_SECOND_THREAD = 1000;
-    private static final String TEMPLATE_MESSAGE_THREAD_NAME_AND_NUMBER = "%s : %d\n";
+    private static final String TEMPLATE_MESSAGE_NUMBER_THREAD = "%s : %d\n";
 
+    public static void main() throws InterruptedException {
+        TaskNumberIncrement firstTask = new TaskNumberIncrement(FROM_NUMBER_FIRST_THREAD,TO_NUMBER_FIRST_THREAD);
+        TaskNumberIncrement secondTask = new TaskNumberIncrement(FROM_NUMBER_SECOND_THREAD,TO_NUMBER_SECOND_THREAD);
 
-    public static void main(String[] args) throws InterruptedException {
-        TaskSummingNumbers firstTask = new TaskSummingNumbers(FROM_NUMBER_FIRST_THREAD,TO_NUMBER_FIRST_THREAD);
-        TaskSummingNumbers secondTask = new TaskSummingNumbers(FROM_NUMBER_SECOND_THREAD,TO_NUMBER_SECOND_THREAD);
+        Thread firstTaskThread = new Thread(firstTask);
+        Thread secondTaskThread = new Thread(secondTask);
 
-        final Thread thread = new Thread(firstTask);
-        final Thread thread1 = new Thread(secondTask);
+        startThreads(firstTaskThread,secondTaskThread);
 
-        thread.start();
-        thread1.start();
+        int result = firstTask.getResultNumber() + secondTask.getResultNumber();
 
-        waitingForTaskFinished(thread1,thread);
-
-        final int result = firstTask.getResultNumber() + secondTask.getResultNumber();
-
-        printThreadNameAndNumber(result);
-
+        System.out.printf(TEMPLATE_MESSAGE_NUMBER_THREAD, Thread.currentThread().getName(), result);
 
     }
-    private static void waitingForTaskFinished(final Thread... threads) throws InterruptedException {
-        for (final Thread thread : threads) {
+    private static void startThreads(Thread... threads) throws InterruptedException {
+        for (Thread thread : threads) {
+            thread.start();
             thread.join();
         }
     }
-    private static TaskSummingNumbers startSubTask(final int forNumber, final int toNumber) {
-        final TaskSummingNumbers subtask = new TaskSummingNumbers(forNumber, toNumber);
-        Thread thread = new Thread(subtask);
-        thread.start();
-        return subtask;
-    }
 
-    private static void printThreadNameAndNumber(final int number) {
-        System.out.printf(TEMPLATE_MESSAGE_THREAD_NAME_AND_NUMBER, Thread.currentThread().getName(), number);
-    }
-
-    private static final class TaskSummingNumbers implements Runnable {
-        private final int INITTIAL_VALUE_RESULT_NUMBER = 0;
+    private static class TaskNumberIncrement implements Runnable {
         private final int fromNumber;
         private final int toNumber;
         private int resultNumber;
-
-
-        private TaskSummingNumbers(int fromNumber, int toNumber) {
+        private TaskNumberIncrement(int fromNumber, int toNumber) {
             this.fromNumber = fromNumber;
             this.toNumber = toNumber;
-            this.resultNumber = INITTIAL_VALUE_RESULT_NUMBER;
-        }
-
-        @Override
-        public void run() {
-            IntStream.rangeClosed(this.fromNumber, this.toNumber).forEach(i -> this.resultNumber += i);
-            printThreadNameAndNumber(this.resultNumber);
         }
 
         public int getResultNumber() {
             return resultNumber;
         }
 
-        public void setResultNumber(int resultNumber) {
-            this.resultNumber = resultNumber;
+        @Override
+        public void run() {
+            IntStream.rangeClosed(this.fromNumber,this.toNumber).forEach(i -> this.resultNumber += i);
+            System.out.printf(TEMPLATE_MESSAGE_NUMBER_THREAD,Thread.currentThread().getName(), this.resultNumber);
         }
     }
-
 }
+
+
