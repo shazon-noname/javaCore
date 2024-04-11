@@ -6,8 +6,8 @@ import java.util.Queue;
 class ProducerConsumer {
     private static final int BUFFER_SIZE = 5;
     private static final int MAX_ITTERATION = 15;
-    private static volatile int itterationCount = 0;
-    private static Queue<Integer> buffer = new PriorityQueue<>();
+    private static volatile int iterationCount = 1;
+    private static final Queue<Integer> buffer = new PriorityQueue<>();
 
     public static void main(String[] args) throws InterruptedException {
         Thread producer = new Thread(new Producer());
@@ -24,7 +24,7 @@ class ProducerConsumer {
 
         @Override
         public void run() {
-            while (itterationCount < MAX_ITTERATION) {
+            while (iterationCount < MAX_ITTERATION) {
                 synchronized (buffer) {
                     if (BUFFER_SIZE == buffer.size()) {
                         try {
@@ -33,11 +33,11 @@ class ProducerConsumer {
                             throw new RuntimeException(e);
                         }
                     }
-                    if (MAX_ITTERATION <= itterationCount && buffer.isEmpty()) {
+                    if (MAX_ITTERATION <= iterationCount && buffer.isEmpty()) {
                         break;
                     }
-                    System.out.println(STR."Producer pro = \{itterationCount}");
-                    buffer.add(itterationCount++);
+                    System.out.println(STR."Producer pro = \{iterationCount}");
+                    buffer.add(iterationCount++);
                     buffer.notifyAll();
                     try {
                         Thread.sleep(500);
@@ -65,7 +65,7 @@ class ProducerConsumer {
                     Integer poll = buffer.poll();
                     System.out.println(STR."Consumer cons = \{poll}");
                     buffer.notifyAll();
-                    if ( MAX_ITTERATION <= itterationCount && buffer.isEmpty()) {
+                    if ( MAX_ITTERATION <= iterationCount && buffer.isEmpty()) {
                         break;
                     }
                     try {

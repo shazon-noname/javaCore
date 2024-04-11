@@ -40,8 +40,8 @@ public class ReadWriteLockExercise {
     }
 
     static class Reader implements Runnable {
-        private ReadWriteLock readWriteLock;
-        private SharedResource sharedResource;
+        private final ReadWriteLock readWriteLock;
+        private final SharedResource sharedResource;
 
         public Reader(ReadWriteLock readWriteLock, SharedResource sharedResource) {
             this.readWriteLock = readWriteLock;
@@ -53,7 +53,7 @@ public class ReadWriteLockExercise {
                 readWriteLock.readLock().lock();
 
                 // Read from the shared resource
-                System.out.println("Reader " + Thread.currentThread().getName() + " reads: " + sharedResource.read());
+                System.out.println(Thread.currentThread().getName() + " reads: " + sharedResource.read());
 
                 readWriteLock.readLock().unlock();
 
@@ -85,7 +85,9 @@ public class ReadWriteLockExercise {
                 sharedResource.write("Writer " + Thread.currentThread().getName() + " writes: " + counter++);
 
                 readWriteLock.writeLock().unlock();
-
+                if (counter == 3) {
+                    System.exit(0);
+                }
                 // Delay between consecutive writing
                 try {
                     Thread.sleep(2000);
