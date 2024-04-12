@@ -5,7 +5,7 @@ import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.RecursiveTask;
 
 public class Starter {
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         final int MAX = 16;
         ForkJoinPool forkJoinPool = new ForkJoinPool();
         forkJoinPool.invoke(new Action(MAX));
@@ -21,7 +21,7 @@ public class Starter {
      }
 
      @Override
-     protected void compute() {
+     protected void compute()  {
          if (value <= 4) {
              System.out.println("Hello before:" + Thread.currentThread().getId() + " = " + value);
              try {

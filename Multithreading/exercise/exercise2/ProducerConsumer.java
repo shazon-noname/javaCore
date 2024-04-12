@@ -5,7 +5,7 @@ import java.util.Queue;
 
 class ProducerConsumer {
     private static final int BUFFER_SIZE = 5;
-    private static final int MAX_ITTERATION = 15;
+    private static final int MAX_ITERATION = 15;
     private static volatile int iterationCount = 1;
     private static final Queue<Integer> buffer = new PriorityQueue<>();
 
@@ -24,7 +24,7 @@ class ProducerConsumer {
 
         @Override
         public void run() {
-            while (iterationCount < MAX_ITTERATION) {
+            while (iterationCount < MAX_ITERATION) {
                 synchronized (buffer) {
                     if (BUFFER_SIZE == buffer.size()) {
                         try {
@@ -33,7 +33,7 @@ class ProducerConsumer {
                             throw new RuntimeException(e);
                         }
                     }
-                    if (MAX_ITTERATION <= iterationCount && buffer.isEmpty()) {
+                    if (MAX_ITERATION <= iterationCount && buffer.isEmpty()) {
                         break;
                     }
                     System.out.println(STR."Producer pro = \{iterationCount}");
@@ -65,7 +65,7 @@ class ProducerConsumer {
                     Integer poll = buffer.poll();
                     System.out.println(STR."Consumer cons = \{poll}");
                     buffer.notifyAll();
-                    if ( MAX_ITTERATION <= iterationCount && buffer.isEmpty()) {
+                    if ( MAX_ITERATION <= iterationCount && buffer.isEmpty()) {
                         break;
                     }
                     try {
