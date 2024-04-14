@@ -2,7 +2,6 @@ package Multithreading.ForkJoinFramework;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
-import java.util.concurrent.RecursiveTask;
 
 public class Starter {
     public static void main(String[] args)  {
@@ -16,8 +15,8 @@ public class Starter {
  class Action extends RecursiveAction {
     private int value;
 
-     public Action(int value) {
-         this.value = value;
+     public Action(int value ) {
+         this.value =value;
      }
 
      @Override
@@ -31,8 +30,8 @@ public class Starter {
              }
              System.out.println("Hello after: " + Thread.currentThread().getId() + " = " + value);
          } else {
-             Action m1 = new Action(value/2);
-             Action m2 = new Action(value/2);
+             Action m1 = new Action(value / 2);
+             Action m2 = m1;
              invokeAll(m1,m2);
          }
      }
