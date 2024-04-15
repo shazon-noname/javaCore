@@ -47,12 +47,12 @@ public class Example {
 
     static class Consumer implements Runnable {
         private final ConcurrentLinkedQueue<String> concurrentLinkedQueue;
-        private final String producerName;
+        private final String consumerName;
 
 
         public Consumer(ConcurrentLinkedQueue<String> concurrentLinkedQueue, String producerName) {
             this.concurrentLinkedQueue = concurrentLinkedQueue;
-            this.producerName = producerName;
+            this.consumerName = producerName;
         }
 
 
@@ -61,7 +61,7 @@ public class Example {
             while (true) {
                 String name = concurrentLinkedQueue.poll();
                 if (name != null) {
-                    System.out.println("consumed: " + name);
+                    System.out.println(consumerName + " consumed: " + name);
                 }
                 try {
                     Thread.sleep(1500);
