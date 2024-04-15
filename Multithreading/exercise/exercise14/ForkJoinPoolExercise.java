@@ -40,7 +40,6 @@ public class ForkJoinPoolExercise {
                 Worker secondHalfWork = new Worker(array, middle, end);
                 invokeAll(firstHalfWork, secondHalfWork);
                 return firstHalfWork.join() + secondHalfWork.join();
-
             }
         }
     }
