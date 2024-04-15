@@ -10,19 +10,20 @@ public final class Main {
     private static final String TEMPLATE_MESSAGE_NUMBER_THREAD = "%s : %d\n";
 
     public static void main() throws InterruptedException {
-        TaskNumberIncrement firstTask = new TaskNumberIncrement(FROM_NUMBER_FIRST_THREAD,TO_NUMBER_FIRST_THREAD);
-        TaskNumberIncrement secondTask = new TaskNumberIncrement(FROM_NUMBER_SECOND_THREAD,TO_NUMBER_SECOND_THREAD);
+        TaskNumberIncrement firstTask = new TaskNumberIncrement(FROM_NUMBER_FIRST_THREAD, TO_NUMBER_FIRST_THREAD);
+        TaskNumberIncrement secondTask = new TaskNumberIncrement(FROM_NUMBER_SECOND_THREAD, TO_NUMBER_SECOND_THREAD);
 
         Thread firstTaskThread = new Thread(firstTask);
         Thread secondTaskThread = new Thread(secondTask);
 
-        startThreads(firstTaskThread,secondTaskThread);
+        startThreads(firstTaskThread, secondTaskThread);
 
         int result = firstTask.getResultNumber() + secondTask.getResultNumber();
 
         System.out.printf(TEMPLATE_MESSAGE_NUMBER_THREAD, Thread.currentThread().getName(), result);
 
     }
+
     private static void startThreads(Thread... threads) throws InterruptedException {
         for (Thread thread : threads) {
             thread.start();
@@ -34,6 +35,7 @@ public final class Main {
         private final int fromNumber;
         private final int toNumber;
         private int resultNumber;
+
         private TaskNumberIncrement(int fromNumber, int toNumber) {
             this.fromNumber = fromNumber;
             this.toNumber = toNumber;
@@ -45,8 +47,8 @@ public final class Main {
 
         @Override
         public void run() {
-            IntStream.rangeClosed(this.fromNumber,this.toNumber).forEach(i -> this.resultNumber += i);
-            System.out.printf(TEMPLATE_MESSAGE_NUMBER_THREAD,Thread.currentThread().getName(), this.resultNumber);
+            IntStream.rangeClosed(this.fromNumber, this.toNumber).forEach(i -> this.resultNumber += i);
+            System.out.printf(TEMPLATE_MESSAGE_NUMBER_THREAD, Thread.currentThread().getName(), this.resultNumber);
         }
     }
 }
