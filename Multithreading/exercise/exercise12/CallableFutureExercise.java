@@ -1,5 +1,6 @@
 package Multithreading.exercise.exercise12;
 
+import java.util.Arrays;
 import java.util.concurrent.*;
 
 public class CallableFutureExercise {
@@ -7,7 +8,7 @@ public class CallableFutureExercise {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         Future<int[]> future = executor.submit(new FutureTask(5));
         int[] result = future.get();
-        System.out.println("Task result: " + java.util.Arrays.toString(result));
+        System.out.println("Task result: " + Arrays.toString(result));
         executor.shutdown();
     }
 
