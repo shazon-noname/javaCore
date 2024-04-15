@@ -3,7 +3,7 @@ package Multithreading.exercise.exercise11;
 import java.util.concurrent.Exchanger;
 
 public class ExchangerExercise {
-    public static void main(String[] args) {
+    public static void main() {
         Exchanger<String> exchanger = new Exchanger<>();
         Thread[] threads = new Thread[2];
         for (int i = 0; i < threads.length; i++) {

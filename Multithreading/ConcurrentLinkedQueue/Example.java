@@ -46,11 +46,11 @@ public class Example {
     }
 
     static class Consumer implements Runnable {
-        private ConcurrentLinkedQueue<String> concurrentLinkedQueue;
-        private String producerName;
+        private final ConcurrentLinkedQueue<String> concurrentLinkedQueue;
+        private final String producerName;
 
 
-        public Consumer(ConcurrentLinkedQueue concurrentLinkedQueue, String producerName) {
+        public Consumer(ConcurrentLinkedQueue<String> concurrentLinkedQueue, String producerName) {
             this.concurrentLinkedQueue = concurrentLinkedQueue;
             this.producerName = producerName;
         }
