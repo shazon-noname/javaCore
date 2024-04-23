@@ -40,7 +40,7 @@ public class ConcurrentHashMapExercise {
         public void run() {
             for (int i = 0; i < MAX_ITERATIONS; i++) {
                 Integer valueMap = map.get(threadName);
-                System.out.println(STR."\{threadName} = \{valueMap}");
+                System.out.println(threadName + valueMap );
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {

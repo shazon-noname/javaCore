@@ -36,7 +36,7 @@ class ProducerConsumer {
                     if (MAX_ITERATION <= iterationCount && buffer.isEmpty()) {
                         break;
                     }
-                    System.out.println(STR."Producer pro = \{iterationCount}");
+                    System.out.println("Producer pro = "+ iterationCount);
                     buffer.add(iterationCount++);
                     buffer.notifyAll();
                     try {
@@ -63,7 +63,7 @@ class ProducerConsumer {
                         }
                     }
                     Integer poll = buffer.poll();
-                    System.out.println(STR."Consumer cons = \{poll}");
+                    System.out.println("Consumer cons = " + poll);
                     buffer.notifyAll();
                     if ( MAX_ITERATION <= iterationCount && buffer.isEmpty()) {
                         break;
