@@ -1,23 +1,28 @@
 package functionalInterface;
 
-import java.util.function.BiFunction;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
-        NumberPredicate predicate = a -> a.doubleValue() != 0;
-        System.out.println(predicate.test(1));
-        System.out.println(predicate.test(0));
+        List<Student> studentList = List.of(
+                new Student("Nick", "N", 1),
+                new Student("Alex", "A", 2),
+                new Student("Mark", "M", 3)
+        );
 
-        //перетворення одного типу даних в інший
-        Function<User, Student> userStudentFunction = user ->
-            new Student(user.getName(), user.getSurname(), 1);
-        System.out.println(userStudentFunction
-                .apply(new User("Viktor","A.")));
+        Predicate<Student> studentPredicate = student -> student.getYearOfStudy() > 1;
+        Function<Student, User> studentUserFunction = student ->
+                new User(student.getName(), student.getSurname());
 
-        BiFunction<User,Integer, Student> userStudentBiFunction = (user, year) ->
-                new Student(user.getName(), user.getSurname(), year);
-        System.out.println(userStudentBiFunction
-                .apply(new User("Viktor","A."), 5));
+        List<User> users = new ArrayList<>();
+        for (Student student : studentList) {
+            if (studentPredicate.test(student)) {
+                users.add(studentUserFunction.apply(student));
+            }
+        }
+        System.out.println(users);
     }
 }
