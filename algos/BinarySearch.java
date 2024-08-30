@@ -10,26 +10,25 @@ public class BinarySearch {
         int middle;
         int position = -1;
         boolean found = false;
-        while (!found || start <= end) {
+        while (start <= end) {
             count++;
             middle = (int) Math.floor((start + end) / 2);
-            for (int i = 0; i < array.length - 1; i++) {
-                if (array[middle] == element) {
-                    found = true;
-                    position = middle;
-                    return position;
-                } else if (element < middle) {
-                    end = middle - 1;
-                } else {
-                    start = middle + 1;
-                }
+            if (array[middle] == element) {
+                found = true;
+                position = middle;
+                break;
+            } else if (element < array[middle]) {
+                end = middle - 1;
+            } else {
+                start = middle + 1;
             }
         }
+
         return position;
     }
 
     public static void main(String[] args) {
-        int result = binaryMethodFindElement(array, 11);
+        int result = binaryMethodFindElement(array, 13);
         System.out.println(STR."""
         result = \{result}
         count = \{count}""");
