@@ -29,8 +29,6 @@ public class BinarySearch {
 
     public static void main(String[] args) {
         int result = binaryMethodFindElement(array, 13);
-        System.out.println(STR."""
-        result = \{result}
-        count = \{count}""");
+        System.out.println("result = " + result + "\n" + "count = " + count);
     }
 }

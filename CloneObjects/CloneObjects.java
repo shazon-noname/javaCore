@@ -8,6 +8,7 @@ public class CloneObjects {
         newObject.j = 3;
         myObject.newObject = newObject;
         MyObject myObject1 = myObject.clone();
+        System.out.println("myObject1.i = " + myObject1.i);
         myObject1.i = 2;
         System.out.println("myObject.i = " + myObject.i);
         System.out.println("myObject1.i = " + myObject1.i);

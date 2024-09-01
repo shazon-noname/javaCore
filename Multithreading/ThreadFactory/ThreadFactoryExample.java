@@ -13,12 +13,20 @@ public class ThreadFactoryExample {
             }
         };
         threadFactory.newThread(new MyRun()).start();
+        System.out.println(123);
+
     }
 
     static class MyRun implements Runnable {
         @Override
         public void run() {
             System.out.println(1);
+        }
+    }
+    static class MyRun2 implements Runnable {
+        @Override
+        public void run() {
+            System.out.println(2);
         }
     }
 }
