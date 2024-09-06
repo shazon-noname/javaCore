@@ -1,15 +1,12 @@
 package algos;
 
 import java.util.ArrayList;
-import java.util.List;
-
 public class QuickSort {
 
     static int count = 0;
 
     public static void main(String[] args) {
-        int[] arr = {0, 3, 2, 5, 6, 8, 23, 9, 4, 6, 4, 1, 7, -1, -5,
-                23, -5, 23};
+        int[] arr = {0, 3, 2, 5, 6, 8, 23, 9, 4, 6, 4, 1, 7, -1, -5, 23, -5, 23};
         int[] sortedArr = quickSort(arr);
 
         for (int num : sortedArr) {
