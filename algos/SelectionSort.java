@@ -32,6 +32,18 @@ public class SelectionSort {
         }
     }
 
+    private static int min(int[] array, int start) {
+        int minIndex = start;
+        int minValue = array[minIndex];
+        for (int i = start + 1; i < array.length; i++) {
+            if (array[i] < minValue) {
+                minValue = array[i];
+                minIndex = i;
+            }
+        }
+        return minIndex;
+    }
+
     private static int[] selectionSortArray3(int[] array) {
         for (int step = 0; step < array.length; step++) {
             count3++;
@@ -66,17 +78,5 @@ public class SelectionSort {
             array[indexMin] = tmp;
         }
         return array;
-    }
-
-    private static int min(int[] array, int start) {
-        int minIndex = start;
-        int minValue = array[minIndex];
-        for (int i = start + 1; i < array.length; i++) {
-            if (array[i] < minValue) {
-                minValue = array[i];
-                minIndex = i;
-            }
-        }
-        return minIndex;
     }
 }
