@@ -111,20 +111,77 @@ public class TreeExample {
         return leftIndex;
     }
 
+    public List<Integer> mergeSort(List<Integer> array) {
+        List<Integer> currentSrc = array;
+        List<Integer> currentDest = new ArrayList<>(array.size());
+
+
+        for (int i = 0; i < array.size(); i++) {
+            currentDest.add(null);
+        }
+
+        int size = 1;
+
+        while (size < array.size()) {
+
+            for (int i = 0; i < array.size(); i += size * 2) {
+                merge(currentSrc, i, currentSrc, i + size, currentDest, i, size);
+            }
+
+
+            List<Integer> temp = currentSrc;
+            currentSrc = currentDest;
+            currentDest = temp;
+
+            size *= 2;
+
+        }
+
+        return currentSrc;
+    }
+
+    public void merge(List<Integer> src1, int src1Start, List<Integer> src2, int src2Start, List<Integer> dest, int destStart, int size) {
+        int index1 = src1Start;
+        int index2 = src2Start;
+
+        int src1End = Math.min(src1Start + size, src1.size());
+        int src2End = Math.min(src2Start + size, src2.size());
+
+        int iterationCount = (src1End - src1Start) + (src2End - src2Start);
+
+        for (int i = 0; i < iterationCount; i++) {
+            if (index1 < src1End && (index2 >= src2End || src1.get(index1) < src2.get(index2))) {
+                dest.set(destStart + i, src1.get(index1));
+                index1++;
+            } else if (index2 < src2End) {
+                dest.set(destStart + i, src2.get(index2));
+                index2++;
+            }
+        }
+    }
+
+
     public static void main(String[] args) {
         TreeExample tree = new TreeExample(25,
                 new TreeExample(12, new TreeExample(10, new TreeExample(2), null), new TreeExample(11,
                         new TreeExample(5), new TreeExample(7))),
                 new TreeExample(28, new TreeExample(22), new TreeExample(33)));
+
         int sumStack = tree.sumStack(tree);
         int sumDeep = tree.sumDeep();
         int sumWide = tree.sumWide(tree);
-        System.out.println(sumStack);
-        System.out.println(sumDeep);
-        System.out.println(sumWide);
+
+        System.out.println("sumStack = " + sumStack);
+        System.out.println("sumDeep = " + sumDeep);
+        System.out.println("sumWide = " + sumWide);
+
         List<Integer> array = tree.createList();
+
         tree.quickSort(array, 0, array.size() - 1);
-        System.out.println(array);
+        System.out.println("quickSort = " + array);
+
+        List<Integer> arraySorted = tree.mergeSort(array);
+        System.out.println("mergeSort = " + arraySorted);
 
     }
 }
