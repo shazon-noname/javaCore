@@ -22,6 +22,22 @@ public class SelectionSort {
         System.out.println(count3);
     }
 
+    private static int[] selectionSortArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int indexMin = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < array[indexMin]) {
+                    indexMin = j;
+                }
+                count++;
+            }
+            int tmp = array[i];
+            array[i] = array[indexMin];
+            array[indexMin] = tmp;
+        }
+        return array;
+    }
+
     private static void selectSortArray2() {
         for (int step = 0; step < array2.length; step++) {
             count2++;
@@ -60,22 +76,6 @@ public class SelectionSort {
                 array[step] = array[minIndex];
                 array[minIndex] = temp;
             }
-        }
-        return array;
-    }
-
-    private static int[] selectionSortArray(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            int indexMin = i;
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[j] < array[indexMin]) {
-                    indexMin = j;
-                }
-                count++;
-            }
-            int tmp = array[i];
-            array[i] = array[indexMin];
-            array[indexMin] = tmp;
         }
         return array;
     }
