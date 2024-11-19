@@ -21,7 +21,7 @@ public class MethodRecursiveDescent {
     }
 
     public enum LexemeType {
-        LEFT_BRACKET, RIGHT_BRACKET, PLUS, MINUS, MULTIPLY, DIVIDE, EOF;
+        NUMBER, LEFT_BRACKET, RIGHT_BRACKET, PLUS, MINUS, MULTIPLY, DIVIDE, EOF;
     }
 
     public static class Lexeme {
@@ -64,8 +64,7 @@ public class MethodRecursiveDescent {
         }
     }
 
-
-    public static List<Lexeme> lexAnalyze(String expression) {
+    public static List<Lexeme> lexemeAnalyze(String expression) {
         List<Lexeme> lexemeList = new ArrayList<Lexeme>();
         int pos = 0;
         while (pos < expression.length()) {
@@ -104,10 +103,13 @@ public class MethodRecursiveDescent {
                             if (pos >= expression.length()) {
                                 break;
                             }
+                            ch = expression.charAt(pos);
                         } while (Character.isDigit(expression.charAt(pos)));
-                        lexemeList.add(new Lexeme(LexemeType.valueOf(stringBuilder.toString()), expression.substring(pos, pos + 1)));
+                        lexemeList.add(new Lexeme(LexemeType.NUMBER, stringBuilder.toString()));
                     }
+
             }
         }
+        return lexemeList;
     }
 }
