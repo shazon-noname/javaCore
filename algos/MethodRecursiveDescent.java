@@ -1,6 +1,7 @@
 package algos;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MethodRecursiveDescent {
@@ -18,6 +19,7 @@ public class MethodRecursiveDescent {
 
     public static void main(String[] args) {
         String expressionText = "22 + 3 - 2 * (2 * 5 + 2) * 4";
+        List<Lexeme> lexemes = lexemeAnalyze(expressionText);
     }
 
     public enum LexemeType {
@@ -106,6 +108,11 @@ public class MethodRecursiveDescent {
                             ch = expression.charAt(pos);
                         } while (Character.isDigit(expression.charAt(pos)));
                         lexemeList.add(new Lexeme(LexemeType.NUMBER, stringBuilder.toString()));
+                    } else {
+                        if (expression.charAt(pos) != ' ') {
+                            throw new RuntimeException("Unexpected character: " + expression.charAt(pos));
+                        }
+                        pos++;
                     }
 
             }
