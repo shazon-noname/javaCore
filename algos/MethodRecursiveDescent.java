@@ -110,6 +110,7 @@ public class MethodRecursiveDescent {
 
             }
         }
+        lexemeList.add(new Lexeme(LexemeType.EOF, ""));
         return lexemeList;
     }
 }
