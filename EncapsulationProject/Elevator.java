@@ -22,7 +22,7 @@ public class Elevator {
     }
 
     public int getMinFloor() {
-        return getMinFloor();
+        return getMinFloor;
     }
 
     public int getMaxFloor() {

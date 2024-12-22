@@ -9,7 +9,7 @@ public class MethodRecursiveDescent {
      * PARSER RULES
      *------------------------------------------------------------------*/
 
-    //    expr : plusminus* EOF ;
+//    expr : plusminus* EOF ;
 //
 //    plusminus: multdiv ( ( '+' | '-' ) multdiv )* ;
 //
@@ -114,7 +114,6 @@ public class MethodRecursiveDescent {
                         }
                         pos++;
                     }
-
             }
         }
         lexemeList.add(new Lexeme(LexemeType.EOF, ""));

@@ -9,3 +9,4 @@ public class Main {
         System.out.println(copy.getProductName() + " ціна після скидки = " + copy.getPrice());
     }
 }
+
