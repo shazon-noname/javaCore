@@ -1,10 +1,11 @@
 package TransferByReferenceOrByValue;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         Product product = new Product("IPhone", 1000);
         Order order = new Order();
-        product = order.addProduct(product);
-        System.out.println(product.getProductName() + " " + product.getPrice());
+        Product copy = order.addProduct(product);
+        System.out.println(product.getProductName() + " стандартна ціна = " + product.getPrice());
+        System.out.println(copy.getProductName() + " ціна після скидки = " + copy.getPrice());
     }
 }

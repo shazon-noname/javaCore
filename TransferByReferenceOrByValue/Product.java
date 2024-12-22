@@ -1,6 +1,6 @@
 package TransferByReferenceOrByValue;
 
-public class Product {
+public class Product  implements Cloneable {
     private final String productName;
     private final int price;
 
@@ -24,6 +24,11 @@ public class Product {
         return new Product(productName, price);
     }
 
+    @Override
+    protected Product clone() throws CloneNotSupportedException {
+        Product product = (Product) super.clone();
+        return product;
+    }
 
     @Override
     public String toString() {
