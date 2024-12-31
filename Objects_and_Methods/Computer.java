@@ -6,7 +6,7 @@ public class Computer {
     Processor processor;
     Ram ram;
     Storage storage;
-    Screen  Screen ;
+    Screen screen ;
     Keyboard keyboard;
 
     public Computer(String vendor, String name, Processor processor, Ram ram, Storage storage, Objects_and_Methods.Screen screen, Keyboard keyboard) {
@@ -15,7 +15,7 @@ public class Computer {
         this.processor = processor;
         this.ram = ram;
         this.storage = storage;
-        Screen = screen;
+        this.screen = screen;
         this.keyboard = keyboard;
         System.out.println("Initial computer configuration");
 
