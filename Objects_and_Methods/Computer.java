@@ -67,7 +67,7 @@ public class Computer {
                 "processor=" + processor +
                 ", ram=" + ram +
                 ", storage=" + storage +
-                ", Screen=" + Screen +
+                ", Screen=" + screen +
                 ", keyboard=" + keyboard +
                 '}';
     }
