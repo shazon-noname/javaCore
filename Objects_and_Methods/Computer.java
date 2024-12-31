@@ -46,11 +46,11 @@ public class Computer {
     }
 
     public Screen getScreen() {
-        return Screen;
+        return screen;
     }
 
     public void setScreen(Screen screen) {
-        Screen = screen;
+        screen = screen;
     }
 
     public Keyboard getKeyboard() {
