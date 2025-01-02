@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public class Birthdays {
     public static void main(String[] args) {
-//        System.out.println(collectBirthdays(2002,2,24));
+        System.out.println(collectBirthdays(2002,2,24));
         System.out.println(dataBirth(2002,2,24));
     }
     public static String collectBirthdays(int year, int month, int day) {
