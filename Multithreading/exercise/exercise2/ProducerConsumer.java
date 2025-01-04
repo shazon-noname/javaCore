@@ -40,7 +40,7 @@ class ProducerConsumer {
                     buffer.add(iterationCount++);
                     buffer.notifyAll();
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
@@ -69,7 +69,7 @@ class ProducerConsumer {
                         break;
                     }
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }

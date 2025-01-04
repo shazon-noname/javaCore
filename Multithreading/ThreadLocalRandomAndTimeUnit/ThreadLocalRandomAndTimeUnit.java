@@ -1,4 +1,4 @@
-package ThreadLocalRandomAndTimeUnit;
+package Multithreading.ThreadLocalRandomAndTimeUnit;
 
 public class ThreadLocalRandomAndTimeUnit {
     static int NUMBER_OF_THREADS = 3;

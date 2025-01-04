@@ -12,7 +12,6 @@ public class RecursiveTraversalInDepth {
         System.out.println("sum recursive = " + root.recursiveSumValueTree());
         System.out.println("sum stack = " + root.sumDeep(root));
         System.out.println("sum queue = " + root.sumWide(root));
-
     }
 
     static class Tree {
