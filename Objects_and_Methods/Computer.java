@@ -9,7 +9,7 @@ public class Computer {
     Screen screen ;
     Keyboard keyboard;
 
-    public Computer(String vendor, String name, Processor processor, Ram ram, Storage storage, Objects_and_Methods.Screen screen, Keyboard keyboard) {
+   public Computer(String vendor, String name, Processor processor, Ram ram, Storage storage, Screen screen, Keyboard keyboard) {
         this.vendor = vendor;
         this.name = name;
         this.processor = processor;
@@ -19,6 +19,10 @@ public class Computer {
         this.keyboard = keyboard;
         System.out.println("Initial computer configuration");
 
+    }
+
+    public double getTotalWeight() {
+        return processor.getWeight() + ram.getWeight() + storage.getWeight() + screen.getWeight() + keyboard.getWeight();
     }
 
     public Processor getProcessor() {
@@ -88,6 +92,10 @@ final class  Processor {
         this.weight = weight;
     }
 
+    public double getWeight() {
+        return weight;
+    }
+
     @Override
     public String toString() {
         return "Processor{" +
@@ -110,6 +118,10 @@ final class Ram {
         this.weight = weight;
     }
 
+    public double getWeight() {
+        return weight;
+    }
+
     @Override
     public String toString() {
         return "Ram{" +
@@ -129,8 +141,10 @@ final class Storage {
         this.type = type;
         this.capacity = capacity;
         this.weight = weight;
+    }
 
-
+    public double getWeight() {
+        return weight;
     }
 
     @Override
@@ -154,6 +168,10 @@ final class Screen  {
         this.weight = weight;
     }
 
+    public double getWeight() {
+        return weight;
+    }
+
     @Override
     public String toString() {
         return "Screen{" +
@@ -173,6 +191,10 @@ final class Keyboard {
         this.type = type;
         this.backlit = backlit;
         this.weight = weight;
+    }
+
+    public double getWeight() {
+        return weight;
     }
 
     @Override
