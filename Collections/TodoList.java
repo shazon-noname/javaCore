@@ -112,6 +112,8 @@ public class TodoList {
                 }
             } catch (Exception e) {
                 System.out.println("Помилка: " + e.getMessage());
+            } finally {
+                scanner.close();
             }
         }
     }
