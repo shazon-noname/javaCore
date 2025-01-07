@@ -21,6 +21,18 @@ public class Task {
         isDone = done;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

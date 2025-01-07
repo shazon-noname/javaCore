@@ -1,10 +1,16 @@
 package Collections.HashSet.exercise1;
 
-import java.util.HashSet;
+import java.util.Comparator;
+import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) {
-        HashSet<Task> tasks =new HashSet<>();
+        TreeSet<Task> tasks =new TreeSet<>(new Comparator<Task>() {
+            @Override
+            public int compare(Task o1, Task o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
         tasks.add(new Task("Buy milk"));
         tasks.add(new Task("Buy milk"));
         tasks.add(new Task("Buy chocolate"));
