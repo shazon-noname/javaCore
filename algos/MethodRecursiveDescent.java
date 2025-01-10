@@ -20,6 +20,7 @@ public class MethodRecursiveDescent {
     public static void main(String[] args) {
         String expressionText = "22 + 3 - 2 * (2 * 5 + 2) * 4";
         List<Lexeme> lexemes = lexemeAnalyze(expressionText);
+        System.out.println(lexemes);
     }
 
     public enum LexemeType {

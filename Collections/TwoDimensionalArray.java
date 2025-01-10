@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class TwoDimensionalArray {
 
-    public static void main() {
+    public static void main(String[] args ) {
         char[][] array = getTwoDimensionalArray(13);
 
         for (char[] element : array) {

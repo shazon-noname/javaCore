@@ -70,7 +70,6 @@ public class TodoList {
             String consoleInput = scanner.nextLine().trim();
             String[] parts = consoleInput.split(" ", 2);
             String command = parts[0].toUpperCase();
-
             try {
                 switch (command) {
                     case "ADD":

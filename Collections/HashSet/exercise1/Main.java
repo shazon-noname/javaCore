@@ -21,5 +21,13 @@ public class Main {
         for (Task task : tasks) {
             System.out.println(task);
         }
+
+        System.out.println("\nceiling - " + tasks.ceiling(new Task("Buy milk")) + System.lineSeparator());
+
+        System.out.println("pollLast() - " + tasks.pollLast() + System.lineSeparator());
+
+        for (Task task : tasks) {
+            System.out.println(task);
+        }
     }
 }

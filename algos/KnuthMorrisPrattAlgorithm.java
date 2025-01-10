@@ -7,7 +7,6 @@ public class KnuthMorrisPrattAlgorithm {
     public static void main(String[] args) {
         String text = "aabaabaaaaaaabaabaaabababaaaabaab";
         String sample = "aabaab";
-
         System.out.println(Arrays.toString(searchNaive(text, sample).toArray()));
         System.out.println(Arrays.toString(prefixFunction(sample)));
         System.out.println(Arrays.toString(KMPSearch(text, sample).toArray()));
