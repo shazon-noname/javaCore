@@ -27,7 +27,7 @@ public class PhoneBook {
         return sb.toString().trim();
     }
 
-    public String getNameByPhone() {
+    public String getNameByPhone(String input) {
         for (Map.Entry<String, Set<String>> entry : phoneBook.entrySet()) {
             if (entry.getValue().isEmpty()) {
                 return entry.getKey();
