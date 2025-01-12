@@ -27,7 +27,7 @@ public class PhoneBook {
         return sb.toString().trim();
     }
 
-    public String getNameByPhone(String input) {
+    public String getNameByPhone() {
         for (Map.Entry<String, Set<String>> entry : phoneBook.entrySet()) {
             if (entry.getValue().isEmpty()) {
                 return entry.getKey();
@@ -55,7 +55,7 @@ public class PhoneBook {
             if (input.equalsIgnoreCase("LIST")) {
                 System.out.println(contactsPhoneBook.listContacts());
             } else if (contactsPhoneBook.isValidPhone(input)) {
-                String name = contactsPhoneBook.getNameByPhone(input);
+                String name = contactsPhoneBook.getNameByPhone();
                 if (name == null) {
                     System.out.println("Такого номеру немає в телефоні книзі");
                     System.out.println("Введіть номер абонента для імені \" " + input + "\": ");
