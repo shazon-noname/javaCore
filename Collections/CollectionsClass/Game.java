@@ -8,26 +8,22 @@ public class Game {
     public static void main(String[] args) {
         Game game = new Game();
         game.initPlayers();
-        ArrayList<String> winners = game.getPlayers();
-
-        for (String winner : winners) {
-            System.out.println(winner);
-        }
+        game.add("Player3");
     }
 
     ArrayList<String> players;
     public static final int WINNERS_CONT = 3;
 
     public Game() {
-        this.players = new ArrayList<>() ;
+        this.players = new ArrayList<>();
     }
 
     public void initPlayers() {
         players.add("Player1");
         players.add("Player2");
-        players.add("Player3");
         players.add("Player4");
         players.add("Player5");
+        players.add("Player6");
     }
 
     public ArrayList<String> getPlayers() {
@@ -37,5 +33,17 @@ public class Game {
             winners.add(players.get(i));
         }
         return winners;
+    }
+
+    public boolean add(String player) {
+        int index = Collections.binarySearch(players, player);
+        if (index >= 0) {
+            return false;
+        }
+        players.add(-index - 1, player);
+        for (String item : players) {
+            System.out.println(item);
+        }
+        return true;
     }
 }
