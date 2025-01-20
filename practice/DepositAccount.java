@@ -19,7 +19,7 @@ public class DepositAccount extends BankAccount {
 
     @Override
     public boolean withdraw(double amount) {
-        if (lastIncome != null && LocalDate.now().minusYears(1).isAfter(lastIncome)) {
+        if (lastIncome != null && LocalDate.now().minusMonths(1).isAfter(lastIncome)) {
             return super.withdraw(amount);
         }
         System.out.println("Неможна знімати гроші, не пройшов ще місяць");

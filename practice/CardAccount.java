@@ -8,7 +8,7 @@ public class CardAccount extends BankAccount {
 
     @Override
     public boolean withdraw(double amount) {
-        return super.withdraw(amount + 1.01);
+        return super.withdraw(amount * 1.01);
     }
 
     @Override
