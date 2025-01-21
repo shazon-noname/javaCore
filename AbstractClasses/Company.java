@@ -38,4 +38,8 @@ class Company {
     public void setIncome(double income) {
         this.income = income;
     }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
 }
