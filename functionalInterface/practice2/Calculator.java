@@ -1,46 +1,33 @@
 package functionalInterface.practice2;
 
-import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class Calculator {
     public static void main(String[] args) {
         int a = 5;
         int b = 3;
 
-        int resultSum = calculate(a, b, new BiFunction<Integer, Integer, Integer>() {
-            @Override
-            public Integer apply(Integer firstNumber, Integer secondNumber) {
-                return firstNumber + secondNumber;
-            }
-        });
+        int resultSum = calculate(a, b, (a1,b1)-> a1+b1);
         System.out.println("resultSum = " + resultSum);
 
-        int resultSubtract = calculate(a, b, new BiFunction<Integer, Integer, Integer>() {
-            @Override
-            public Integer apply(Integer firstNumber, Integer secondNumber) {
-                return firstNumber - secondNumber;
-            }
-        });
-        System.out.println("resultSubtract = " + resultSubtract);
+        List<Integer> integerList = Arrays.asList(1,2,3,4);
+        integerList.forEach(System.out::println);
 
-        int resultMultiply = calculate(a, b, new BiFunction<Integer, Integer, Integer>() {
-            @Override
-            public Integer apply(Integer firstNumber, Integer secondNumber) {
-                return firstNumber * secondNumber;
-            }
-        });
-        System.out.println("resultMultiply = " + resultMultiply);
+        Consumer<String> consumer = string -> System.out.println(string);
+        Consumer<String> consumer1 = System.out::println;
+        Consumer<String> consumer3 = Calculator::print;
 
-        int resultDivide = calculate(a, b, new BiFunction<Integer, Integer, Integer>() {
-            @Override
-            public Integer apply(Integer firstNumber, Integer secondNumber) {
-                return firstNumber / secondNumber;
-            }
-        });
-        System.out.println("resultDivide = " + resultDivide);
+        Supplier<String> supplier = String::new;
+        System.out.println(supplier.get());
 
+    }
 
+    public static void print(String string) {
+        System.out.println(string);
     }
 
     private static int calculate(int a, int b, BiFunction<Integer, Integer, Integer> action) {
