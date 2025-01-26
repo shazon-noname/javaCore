@@ -1,49 +1,49 @@
 package functionalInterface.practice2;
 
+import java.math.BigDecimal;
+import java.util.function.BiFunction;
+
 public class Calculator {
     public static void main(String[] args) {
         int a = 5;
         int b = 3;
 
-        Action<Integer> actionSum = new Action<Integer>() {
+        int resultSum = calculate(a, b, new BiFunction<Integer, Integer, Integer>() {
             @Override
-            public Integer calculate(Integer t1, Integer t2) {
-                return t1 + t2;
+            public Integer apply(Integer firstNumber, Integer secondNumber) {
+                return firstNumber + secondNumber;
             }
-        };
-        computation(a, b,actionSum);
+        });
+        System.out.println("resultSum = " + resultSum);
 
-        Action<Integer> subtract = new Action<Integer>() {
+        int resultSubtract = calculate(a, b, new BiFunction<Integer, Integer, Integer>() {
             @Override
-            public Integer calculate(Integer t1, Integer t2) {
-                return t1 - t2;
+            public Integer apply(Integer firstNumber, Integer secondNumber) {
+                return firstNumber - secondNumber;
             }
-        };
-        computation(a,b,subtract);
+        });
+        System.out.println("resultSubtract = " + resultSubtract);
 
-        Action<Integer> divide = new Action<Integer>() {
+        int resultMultiply = calculate(a, b, new BiFunction<Integer, Integer, Integer>() {
             @Override
-            public Integer calculate(Integer t1, Integer t2) {
-                return t1 / t2;
+            public Integer apply(Integer firstNumber, Integer secondNumber) {
+                return firstNumber * secondNumber;
             }
-        };
-        computation(a,b,divide);
+        });
+        System.out.println("resultMultiply = " + resultMultiply);
 
-        Action<Integer> multiply = new Action<Integer>() {
+        int resultDivide = calculate(a, b, new BiFunction<Integer, Integer, Integer>() {
             @Override
-            public Integer calculate(Integer t1, Integer t2) {
-                return t1 * t2;
+            public Integer apply(Integer firstNumber, Integer secondNumber) {
+                return firstNumber / secondNumber;
             }
-        };
-        computation(a,b,multiply);
+        });
+        System.out.println("resultDivide = " + resultDivide);
+
+
     }
 
-    private static void computation(int a, int b,Action<Integer> action) {
-        int result = calculate(a, b,action);
-        System.out.println( action.getClass() +  " = " + result);
-    }
-
-    private static int calculate (int a, int b, Action<Integer> action) {
-        return action.calculate(a,b);
+    private static int calculate(int a, int b, BiFunction<Integer, Integer, Integer> action) {
+        return action.apply(a, b);
     }
 }
