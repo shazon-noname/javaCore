@@ -41,7 +41,7 @@ public class Example2 {
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                    System.out.println(strings.removeFirst());
+                    System.out.println(strings.remove(0));
                 }
             }
         }

@@ -28,7 +28,7 @@ public class Main {
 
         public synchronized String removeList() {                                   //if you don't use synchronized - IndexOutOfBoundsException
             if (!list.isEmpty()) {                                                  // because the second thread can also start checking at the same time as the first
-                return (String) list.removeFirst();
+                return (String) list.remove(0);
             }
             return null;
         }
