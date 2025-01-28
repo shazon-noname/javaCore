@@ -58,7 +58,7 @@ public class PhoneBook {
                 String name = contactsPhoneBook.getNameByPhone();
                 if (name == null) {
                     System.out.println("Такого номеру немає в телефоні книзі");
-                    System.out.println("Введіть номер абонента для імені \" " + input + "\": ");
+                    System.out.println("Введіть ім'я абонента для номеру \" " + input + "\": ");
                     String newName = scanner.nextLine().trim();
                     if (contactsPhoneBook.isValidName(newName)) {
                         contactsPhoneBook.addContact(newName, input);
@@ -68,12 +68,13 @@ public class PhoneBook {
                     }
                 } else {
                     System.out.println("Цей номер належить: " + name);
+
                 }
             } else if (contactsPhoneBook.isValidName(input)) {
                 Set<String> phones = contactsPhoneBook.getPhonesByName(input);
                 if (phones.isEmpty()) {
                     System.out.println("Такого імені в телефонній книзі не існує");
-                    System.out.print("Введіть ім'я абонента для номеру \"" + input + "\": ");
+                    System.out.print("Введіть номер абонента для імені\"" + input + "\": ");
                     String phone = scanner.nextLine();
                     if (contactsPhoneBook.isValidPhone(phone)) {
                         contactsPhoneBook.addContact(input, phone);
