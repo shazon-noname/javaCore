@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class SynonymDictionary {
-    private static final String FILE_NAME = "synonyms.txt";
+    private static final String FILE_NAME = "practice/exercise2/synonyms.txt";
     private static final Map<String, List<String>> dictionary = new HashMap<>();
 
     public static void main(String[] args) {
