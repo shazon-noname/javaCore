@@ -1,4 +1,4 @@
-package practice;
+package practice.exercise;
 
 public class CardAccount extends BankAccount {
     @Override

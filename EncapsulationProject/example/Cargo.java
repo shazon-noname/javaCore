@@ -8,7 +8,6 @@ public final class Cargo {
     private final String registrationNumber;
     private final boolean isFragile;
 
-    // Конструктор
     public Cargo(Dimensions dimensions, double weight, String deliveryAddress, boolean canBeFlipped, String registrationNumber, boolean isFragile) {
         this.dimensions = dimensions;
         this.weight = weight;
@@ -18,7 +17,6 @@ public final class Cargo {
         this.isFragile = isFragile;
     }
 
-    // Геттеры
     public Dimensions getDimensions() {
         return dimensions;
     }
@@ -43,17 +41,17 @@ public final class Cargo {
         return isFragile;
     }
 
-    // Метод для создания копии с новым адресом доставки
+    // Метод для створення копії з новою адресою доставки
     public Cargo withDeliveryAddress(String newAddress) {
         return new Cargo(dimensions, weight, newAddress, canBeFlipped, registrationNumber, isFragile);
     }
 
-    // Метод для создания копии с новыми габаритами
+    // Метод для створення копії з новими габаритами
     public Cargo withDimensions(Dimensions newDimensions) {
         return new Cargo(newDimensions, weight, deliveryAddress, canBeFlipped, registrationNumber, isFragile);
     }
 
-    // Метод для создания копии с новой массой
+    // Метод для створення копії з новою масою
     public Cargo withWeight(double newWeight) {
         return new Cargo(dimensions, newWeight, deliveryAddress, canBeFlipped, registrationNumber, isFragile);
     }
