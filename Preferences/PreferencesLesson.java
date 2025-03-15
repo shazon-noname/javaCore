@@ -41,7 +41,7 @@ public class PreferencesLesson {
 
 
     public void savePreferences() {
-        Preferences prefs = Preferences.userNodeForPackage(PreferencesLesson.class);
+        Preferences prefs = Preferences.userNodeForPackage(PreferencesLesson.class); //HKEY_CURRENT_USER\Software\JavaSoft\Prefs
         prefs.put("name", name);
         prefs.putInt("volume", volume);
         prefs.putBoolean("isDarkMode", isDarkMode);
