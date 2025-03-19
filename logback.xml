@@ -10,6 +10,7 @@
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
+
     <appender name="STDERR_FILE" class="ch.qos.logback.core.FileAppender">
         <file>stderr.log</file>
         <encoder>
@@ -21,6 +22,7 @@
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{ISO8601} [%thread] %-5level %logger{36} - %msg%n</pattern>

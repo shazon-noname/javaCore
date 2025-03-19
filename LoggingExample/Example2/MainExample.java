@@ -1,4 +1,4 @@
-package LoggingExample.Example;
+package LoggingExample.Example2;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

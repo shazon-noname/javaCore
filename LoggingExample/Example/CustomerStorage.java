@@ -4,50 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CustomerStorage {
-    private final Map<String, Customer> storage;
+    private Map<String, Customer> storage;
 
     public CustomerStorage() {
         storage = new HashMap<>();
     }
 
     public void addCustomer(String data) {
-        // Реализация будет добавлена в соответствии с заданием
+        // Здесь будет логика добавления клиента
     }
 
     public void listCustomers() {
-        // Реализация будет добавлена в соответствии с заданием
+        storage.values().forEach(System.out::println);
     }
 
     public void removeCustomer(String name) {
-        // Реализация будет добавлена в соответствии с заданием
+        storage.remove(name);
     }
 
-    public int getCustomerCount() {
+    public int getCount() {
         return storage.size();
     }
 }
-
-class Customer {
-    private String name;
-    private String email;
-    private String phone;
-
-    public Customer(String name, String email, String phone) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-}
-
