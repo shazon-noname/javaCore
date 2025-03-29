@@ -38,11 +38,6 @@ public class Example1 {
                         } else {
                             LOGGER.info("Directory created: " + parentDir.getAbsolutePath());
                         }
-                        if (!dirsCreated) {
-                            LOGGER.warning("Directory was not created: " + parentDir.getAbsolutePath());
-                        } else {
-                            LOGGER.info("Directory created: " + parentDir.getAbsolutePath());
-                        }
                     }
                     boolean created = file.createNewFile();
                     if (created) {
