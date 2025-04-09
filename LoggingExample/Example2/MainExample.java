@@ -51,7 +51,7 @@ public class MainExample {
 //        try {
 //            throw new Exception("message");
 //        } catch (Exception e) {
-////            logger.info(e.getMessage());
+//            logger.info(e.getMessage());
 //            e.printStackTrace();
 //        }
        }
