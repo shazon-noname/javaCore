@@ -11,11 +11,16 @@ public class Example2 {
         buff.put("llo".getBytes()); // mark = 2, position = 5, limit = 16, capacity = 16
         buff.limit(8); // mark = 2, position = 5, limit = 8, capacity = 16
 
+        //Метод duplicate() створить новий екземпляр ByteBuffer, який посилатиметься на ту саму ділянку пам'яті,
+        // але матиме свої індекси, скопійовані з батьківського екземпляра.
+        // Зміни даних відображатимуться одразу у двох екземплярах.
         ByteBuffer duplicateView = buff.duplicate(); // mark = 2, position = 5, limit = 8, capacity = 16
         duplicateView.position(0); // mark = 2, position = 0, limit = 8, capacity = 16
         duplicateView.put("Good day".getBytes()); // mark = 2, position = 8, limit = 8, capacity = 16
         System.out.println(new String(buff.array(), StandardCharsets.UTF_8)); // Good day
 
+//      Метод slice() створить новий екземпляр ByteBuffer, починаючи з позиції, зазначеної в батьківському екземплярі,
+//      скине індекси mark і position, а також встановить limit і capacity рівними розміру нового буфера.
         duplicateView.limit(16).put(" fellow".getBytes()); // mark = 2, position = 15, limit = 16, capacity = 16
         duplicateView.position(9).limit(15); // mark = 2, position = 9, limit = 15, capacity = 16
         ByteBuffer slicedView = duplicateView.slice(); // mark = -1, position = 0, limit = 7, capacity = 7
