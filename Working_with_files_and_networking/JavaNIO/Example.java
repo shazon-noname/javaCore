@@ -98,5 +98,23 @@ public class Example {
         bytes = new byte[duplicateView.remaining()];
         duplicateView.get(bytes);
         System.out.println(new String(bytes, StandardCharsets.UTF_8));
+
+        duplicateView.position(0);
+        duplicateView.limit(20);
+
+        ByteBuffer slice = duplicateView.slice();
+        slice.position(6).put("12k mmr!".getBytes()).flip();
+        byte[] sliceByte = new byte[slice.remaining()];
+        slice.get(sliceByte);
+        System.out.println(new String(sliceByte, StandardCharsets.UTF_8));
+
+        byteBuffer.position("david".getBytes().length);
+        byteBuffer.put(" go v flatOut2".getBytes());
+
+        byteBuffer.flip();
+
+        bytes = new byte[byteBuffer.remaining()];
+        byteBuffer.get(bytes);
+        System.out.println(new String(bytes, StandardCharsets.UTF_8));
     }
 }
