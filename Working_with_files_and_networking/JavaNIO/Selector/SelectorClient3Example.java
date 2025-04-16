@@ -10,7 +10,7 @@ public class SelectorClient3Example {
         SocketChannel clientChannel = SocketChannel.open(new InetSocketAddress("localhost", 8089));
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.print("Введите сообщение для отправки на сервер: ");
+            System.out.print("Введіть нове повідомлення для відправки на сервер: ");
             String message = scanner.nextLine();
             if ("exit".equals(message)) {
                 break;
