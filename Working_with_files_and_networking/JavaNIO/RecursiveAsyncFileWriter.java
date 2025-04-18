@@ -23,8 +23,9 @@ public class RecursiveAsyncFileWriter {
                 StandardOpenOption.CREATE,
                 StandardOpenOption.WRITE
         );
+        ByteBuffer buffer = ByteBuffer.allocate(256);
 
-        writeNextLine(asynchronousFileChannel);
+        writeNextLine(asynchronousFileChannel, buffer);
 
         System.out.println("Asynchronous recording has started...");
         try {
@@ -35,7 +36,7 @@ public class RecursiveAsyncFileWriter {
     }
 
 
-    private static void writeNextLine(AsynchronousFileChannel asynchronousFileChannel) {
+    private static void writeNextLine(AsynchronousFileChannel asynchronousFileChannel, ByteBuffer buffer) {
         if (currentIndex >= MESSAGE.length) {
             System.out.println("all data is recorded");
             try {
@@ -47,7 +48,9 @@ public class RecursiveAsyncFileWriter {
         }
 
         String line = MESSAGE[currentIndex];
-        ByteBuffer buffer = ByteBuffer.wrap(line.getBytes());
+        buffer.clear();
+        buffer.put(line.getBytes());
+        buffer.flip();
 
         asynchronousFileChannel.write(buffer,
                 filePosition,
@@ -58,7 +61,7 @@ public class RecursiveAsyncFileWriter {
                         System.out.println("Recorded: \"" + line.trim() + "\" (" + bytesWritten + "bytes)");
                         currentIndex++;
                         filePosition += bytesWritten;
-                        writeNextLine(asynchronousFileChannel);
+                        writeNextLine(asynchronousFileChannel, buffer);
                     }
 
                     @Override
