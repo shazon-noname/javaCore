@@ -2,8 +2,6 @@ package src.Working_with_files_and_networking;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
 import java.io.BufferedReader;
@@ -20,23 +18,14 @@ public class ParsingHTML {
 
         try {
             Document document = Jsoup.connect("https://skillbox.ru").get();
-
-            // Ищем все карточки курсов
             Elements courses = document.select(".ui-header-directions__item");
             courses.forEach(course -> System.out.println(course.text()));
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-
-
-
 //        String htmlFile = parseFile("src/Working_with_files_and_networking/code.html");
 //        Document document = Jsoup.parse(htmlFile);
 //        System.out.println(htmlFile);
-
-
     }
 
     public static String parseFile(String path) {
