@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>My Java Project</name>
-    <description>A simple Java project</description>
+    <description>A simple Java project using JDK 21</description>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -17,7 +17,7 @@
     </properties>
 
     <dependencies>
-        <!-- Example dependency: JUnit for testing -->
+        <!-- JUnit -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -25,6 +25,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -37,10 +38,18 @@
             <version>1.5.13</version>
         </dependency>
 
+        <!-- Jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.20.1</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.34</version>
+            <version>1.18.38</version>
         </dependency>
     </dependencies>
 
@@ -54,33 +63,19 @@
                 <configuration>
                     <source>21</source>
                     <target>21</target>
-                    <compilerArgs>
-                        <arg>--enable-preview</arg>
-                    </compilerArgs>
                 </configuration>
             </plugin>
 
-            <!-- Exec Plugin -->
+            <!-- Maven Exec Plugin -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>src.LoggingExample.Example.Main</mainClass>
-                </configuration>
-            </plugin>
-
-            <!-- Surefire Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M9</version>
-                <configuration>
-                    <argLine>--enable-preview</argLine>
+                    <!-- ⚠️ Укажи свой реальный путь к классу -->
+                    <mainClass>LoggingExample.Example.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-
 </project>
