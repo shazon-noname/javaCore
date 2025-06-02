@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MethodRecursiveDescent {
     public static void main(String[] args) {
-        String expressionText = "22 + 2 * ( 2 + 2 ) * 4";
+        String expressionText = "-22 + 2 * ( 2 + 2 ) * 4";
         List<Lexeme> lexemes = new LexemeAnalyzer().lexemeAnalyze(expressionText);
         LexemeBuffer lexemeBuffer = new LexemeBuffer(lexemes);
         int result = new LexemeAnalyzer().expr(lexemeBuffer);
@@ -176,6 +176,8 @@ class LexemeAnalyzer {
     public int factor(LexemeBuffer lexemes) {
         Lexeme lexeme = lexemes.next();
         switch (lexeme.type) {
+            case MINUS:
+                return -factor(lexemes);
             case NUMBER:
                 return Integer.parseInt(lexeme.value);
             case LEFT_BRACKET:
