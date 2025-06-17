@@ -17,10 +17,33 @@ public class MethodRecursiveDescent {
 
 enum LexemeType {
     NUMBER, PLUS, MINUS, MULTIPLY, DIVIDE, LEFT_BRACKET, RIGHT_BRACKET, EOF
+    }
+
+class LexemeBuffer {
+    private int pos;
+
+    public List<Lexeme> lexemes;
+
+    public LexemeBuffer(List<Lexeme> lexemes) {
+        this.lexemes = lexemes;
+    }
+
+    public Lexeme next() {
+        return lexemes.get(pos++);
+    }
+
+    public void back() {
+        pos--;
+    }
+
+    public int getPos() {
+        return pos;
+    }
 }
 
 class Lexeme {
     LexemeType type;
+
     String value;
 
     Lexeme(LexemeType type, String value) {
@@ -46,8 +69,8 @@ class Lexeme {
         return value;
     }
 }
-
 class LexemeAnalyzer {
+
     public List<Lexeme> lexemeAnalyze(String expression) {
         ArrayList<Lexeme> lexemes = new ArrayList<>();
         int pos = 0;
@@ -172,7 +195,6 @@ class LexemeAnalyzer {
             }
         }
     }
-
     public int factor(LexemeBuffer lexemes) {
         Lexeme lexeme = lexemes.next();
         switch (lexeme.type) {
@@ -193,28 +215,7 @@ class LexemeAnalyzer {
                         + " at position: " + lexemes.getPos());
         }
     }
-}
 
-class LexemeBuffer {
-    private int pos;
-
-    public List<Lexeme> lexemes;
-
-    public LexemeBuffer(List<Lexeme> lexemes) {
-        this.lexemes = lexemes;
-    }
-
-    public Lexeme next() {
-        return lexemes.get(pos++);
-    }
-
-    public void back() {
-        pos--;
-    }
-
-    public int getPos() {
-        return pos;
-    }
 }
 
 
