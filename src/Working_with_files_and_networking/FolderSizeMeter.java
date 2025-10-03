@@ -6,10 +6,12 @@ import java.util.Scanner;
 public class FolderSizeMeter {
     private static final String[] sizeNames = {" b", " kb", " MB", " GB"};
 
-    public static void main() {
+    public static void main(String[] args) {
         while (true) {
             System.out.println("Enter the path or exit: ");
             String path = new Scanner(System.in).nextLine();
+
+            System.out.println("wait...");
 
             if (path.equals("exit")) {
                 return;

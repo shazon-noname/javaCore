@@ -28,7 +28,7 @@ public class FileExample {
                 logger.debug("Not have files");
             }
         }
-        Path p = Paths.get("Working_with_files_and_networking/text.txt");
+        Path p = Paths.get("src/Working_with_files_and_networking/text.txt");
         Stream<String> stringList = Files.lines(p);
         stringList.forEach((s) -> System.out.println(s));
 

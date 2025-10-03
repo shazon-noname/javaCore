@@ -13,7 +13,7 @@ public class Example1 {
     private static final Logger LOGGER = Logger.getLogger(Example1.class.getName());
 
     public static void main(String[] args) {
-        String filePath = "C:/Users/marya/IdeaProjects/javaCore/src.Working_with_files_and_networking/text.txt";
+        String filePath = "C:/Users/marya/IdeaProjects/javaCore/src/Working_with_files_and_networking/text.txt";
         File file = new File(filePath);
 
         FileHandler fileHandler = null;
