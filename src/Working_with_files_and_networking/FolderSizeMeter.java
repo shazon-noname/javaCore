@@ -43,7 +43,7 @@ public class FolderSizeMeter {
     public static String getHumanReadableSize2(Long length) {
         int power = (int) (Math.log(length) / Math.log(1024)); // logₐ(b) = log(b) / log(a), ступень - це тип розміру з масиву sizeNames
         double value = length / Math.pow(1024, power);
-        int roundedValue = (int) (Math.round(value * 100) / 100);
+        int roundedValue = (int) (Math.round(value * 100.0) / 100.0);
         return roundedValue + sizeNames[power];
     }
 
@@ -54,6 +54,7 @@ public class FolderSizeMeter {
             result /= 1024;
             power++;
         }
-        return (Math.round(result * 100) / 100) + sizeNames[power];
+        return Math.round(result * 100.0) / 100.0 + sizeNames[power];
+
     }
 }
