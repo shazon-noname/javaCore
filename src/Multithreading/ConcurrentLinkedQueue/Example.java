@@ -1,76 +1,93 @@
 package src.Multithreading.ConcurrentLinkedQueue;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Example {
-    public static void main() {
-        ConcurrentLinkedQueue<String> concurrentLinkedQueue = new ConcurrentLinkedQueue<>();
-        Thread producer1 = new Thread(new Producer(concurrentLinkedQueue,"Producer : 1"));
-        Thread producer2 = new Thread(new Producer(concurrentLinkedQueue,"Producer : 2"));
+    // Об'єкт для синхронізації виводу
+    private static final Lock lock = new ReentrantLock();
+    
+    public static void main(String[] args) {
+        ConcurrentLinkedQueue<String> queue = new ConcurrentLinkedQueue<>();
+        
+        // Створюємо виробників
+        Thread producer1 = new Thread(new Producer(queue, "Виробник 1"));
+        Thread producer2 = new Thread(new Producer(queue, "Виробник 2"));
 
-        Thread consumer1 = new Thread(new Consumer(concurrentLinkedQueue,"Consumer : 1"));
-        Thread consumer2 = new Thread(new Consumer(concurrentLinkedQueue,"Consumer : 2"));
+        // Створюємо споживачів
+        Thread consumer1 = new Thread(new Consumer(queue, "Споживач 1"));
+        Thread consumer2 = new Thread(new Consumer(queue, "Споживач 2"));
 
+        // Запускаємо всі потоки
         producer1.start();
         producer2.start();
         consumer1.start();
         consumer2.start();
-
     }
 
     static class Producer implements Runnable {
-        private final ConcurrentLinkedQueue<String> concurrentLinkedQueue;
+        private final ConcurrentLinkedQueue<String> queue;
         private final String producerName;
-        private int counter ;
+        private int counter;
 
-        public Producer(ConcurrentLinkedQueue<String> concurrentLinkedQueue, String producerName) {
-            this.concurrentLinkedQueue = concurrentLinkedQueue;
-            this.producerName = producerName;
+        public Producer(ConcurrentLinkedQueue<String> queue, String name) {
+            this.queue = queue;
+            this.producerName = name;
             this.counter = 0;
         }
 
-
         @Override
         public void run() {
-            while (true) {
-                String name = producerName + "-Item-" + counter++;
-                concurrentLinkedQueue.offer(name);
-                System.out.println("Produced: " + name);
-                try {
+            try {
+                while (!Thread.currentThread().isInterrupted()) {
+                    String item = producerName + "-Елемент-" + (counter++);
+                    queue.offer(item);
+                    
+                    // Синхронізований вивід
+                    lock.lock();
+                    try {
+                        System.out.println("Створено: " + item);
+                    } finally {
+                        lock.unlock();
+                    }
+                    
                     Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
                 }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
         }
     }
 
     static class Consumer implements Runnable {
-        private final ConcurrentLinkedQueue<String> concurrentLinkedQueue;
+        private final ConcurrentLinkedQueue<String> queue;
         private final String consumerName;
 
-
-        public Consumer(ConcurrentLinkedQueue<String> concurrentLinkedQueue, String producerName) {
-            this.concurrentLinkedQueue = concurrentLinkedQueue;
-            this.consumerName = producerName;
+        public Consumer(ConcurrentLinkedQueue<String> queue, String name) {
+            this.queue = queue;
+            this.consumerName = name;
         }
-
 
         @Override
         public void run() {
-            while (true) {
-                String name = concurrentLinkedQueue.poll();
-                if (name != null) {
-                    System.out.println(consumerName + " consumed: " + name);
+            try {
+                while (!Thread.currentThread().isInterrupted()) {
+                    String item = queue.poll();
+                    if (item != null) {
+                        // Синхронізований вивід
+                        lock.lock();
+                        try {
+                            System.out.println(consumerName + " обробив: " + item);
+                        } finally {
+                            lock.unlock();
+                        }
+                    }
+                    Thread.sleep(1000);
                 }
-                try {
-                    Thread.sleep(1500);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
         }
     }
-
-
 }
